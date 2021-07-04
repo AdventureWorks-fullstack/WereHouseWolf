@@ -1,0 +1,2794 @@
+﻿schema {
+  query: Query
+}
+
+type Query {
+  customers(first: Int after: String last: Int before: String where: CustomerFilterInput order: [CustomerSortInput!]): CustomerConnection
+  departments(first: Int after: String last: Int before: String where: DepartmentFilterInput order: [DepartmentSortInput!]): DepartmentConnection
+  employees(first: Int after: String last: Int before: String where: EmployeeFilterInput order: [EmployeeSortInput!]): EmployeeConnection
+  locations(first: Int after: String last: Int before: String where: LocationFilterInput order: [LocationSortInput!]): LocationConnection
+  products(first: Int after: String last: Int before: String where: ProductFilterInput order: [ProductSortInput!]): ProductConnection
+  purchases(first: Int after: String last: Int before: String where: PurchaseOrderHeaderFilterInput order: [PurchaseOrderHeaderSortInput!]): PurchaseOrderHeaderConnection
+  sales(first: Int after: String last: Int before: String where: SalesOrderHeaderFilterInput order: [SalesOrderHeaderSortInput!]): SalesOrderHeaderConnection
+  shoppingCartById(shoppingCartId: String): [ShoppingCartItem]
+  shoppingCarts: [String]
+  specials: [SpecialOffer]
+  stores(first: Int after: String last: Int before: String where: StoreFilterInput order: [StoreSortInput!]): StoreConnection
+  vendors(first: Int after: String last: Int before: String where: VendorFilterInput order: [VendorSortInput!]): VendorConnection
+  workOrders(first: Int after: String last: Int before: String where: WorkOrderFilterInput order: [WorkOrderSortInput!]): WorkOrderConnection
+}
+
+input CustomerFilterInput {
+  and: [CustomerFilterInput!]
+  or: [CustomerFilterInput!]
+  customerId: ComparableInt32OperationFilterInput
+  personId: ComparableNullableOfInt32OperationFilterInput
+  storeId: ComparableNullableOfInt32OperationFilterInput
+  territoryId: ComparableNullableOfInt32OperationFilterInput
+  accountNumber: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  person: PersonFilterInput
+  store: StoreFilterInput
+  territory: SalesTerritoryFilterInput
+  salesOrderHeaders: ListFilterInputTypeOfSalesOrderHeaderFilterInput
+}
+
+input CustomerSortInput {
+  customerId: SortEnumType
+  personId: SortEnumType
+  storeId: SortEnumType
+  territoryId: SortEnumType
+  accountNumber: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  person: PersonSortInput
+  store: StoreSortInput
+  territory: SalesTerritorySortInput
+}
+
+input DepartmentFilterInput {
+  and: [DepartmentFilterInput!]
+  or: [DepartmentFilterInput!]
+  departmentId: ComparableInt16OperationFilterInput
+  name: StringOperationFilterInput
+  groupName: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  employeeDepartmentHistories: ListFilterInputTypeOfEmployeeDepartmentHistoryFilterInput
+}
+
+input DepartmentSortInput {
+  departmentId: SortEnumType
+  name: SortEnumType
+  groupName: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+input EmployeeFilterInput {
+  and: [EmployeeFilterInput!]
+  or: [EmployeeFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  nationalIdnumber: StringOperationFilterInput
+  loginId: StringOperationFilterInput
+  organizationLevel: ComparableNullableOfInt16OperationFilterInput
+  jobTitle: StringOperationFilterInput
+  birthDate: ComparableDateTimeOperationFilterInput
+  maritalStatus: StringOperationFilterInput
+  gender: StringOperationFilterInput
+  hireDate: ComparableDateTimeOperationFilterInput
+  salariedFlag: BooleanOperationFilterInput
+  vacationHours: ComparableInt16OperationFilterInput
+  sickLeaveHours: ComparableInt16OperationFilterInput
+  currentFlag: BooleanOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: PersonFilterInput
+  salesPerson: SalesPersonFilterInput
+  employeeDepartmentHistories: ListFilterInputTypeOfEmployeeDepartmentHistoryFilterInput
+  employeePayHistories: ListFilterInputTypeOfEmployeePayHistoryFilterInput
+  jobCandidates: ListFilterInputTypeOfJobCandidateFilterInput
+  purchaseOrderHeaders: ListFilterInputTypeOfPurchaseOrderHeaderFilterInput
+}
+
+input EmployeeSortInput {
+  businessEntityId: SortEnumType
+  nationalIdnumber: SortEnumType
+  loginId: SortEnumType
+  organizationLevel: SortEnumType
+  jobTitle: SortEnumType
+  birthDate: SortEnumType
+  maritalStatus: SortEnumType
+  gender: SortEnumType
+  hireDate: SortEnumType
+  salariedFlag: SortEnumType
+  vacationHours: SortEnumType
+  sickLeaveHours: SortEnumType
+  currentFlag: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  businessEntity: PersonSortInput
+  salesPerson: SalesPersonSortInput
+}
+
+input LocationFilterInput {
+  and: [LocationFilterInput!]
+  or: [LocationFilterInput!]
+  locationId: ComparableInt16OperationFilterInput
+  name: StringOperationFilterInput
+  costRate: ComparableDecimalOperationFilterInput
+  availability: ComparableDecimalOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  productInventories: ListFilterInputTypeOfProductInventoryFilterInput
+  workOrderRoutings: ListFilterInputTypeOfWorkOrderRoutingFilterInput
+}
+
+input LocationSortInput {
+  locationId: SortEnumType
+  name: SortEnumType
+  costRate: SortEnumType
+  availability: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+input ProductFilterInput {
+  and: [ProductFilterInput!]
+  or: [ProductFilterInput!]
+  productId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  productNumber: StringOperationFilterInput
+  makeFlag: BooleanOperationFilterInput
+  finishedGoodsFlag: BooleanOperationFilterInput
+  color: StringOperationFilterInput
+  safetyStockLevel: ComparableInt16OperationFilterInput
+  reorderPoint: ComparableInt16OperationFilterInput
+  standardCost: ComparableDecimalOperationFilterInput
+  listPrice: ComparableDecimalOperationFilterInput
+  size: StringOperationFilterInput
+  sizeUnitMeasureCode: StringOperationFilterInput
+  weightUnitMeasureCode: StringOperationFilterInput
+  weight: ComparableNullableOfDecimalOperationFilterInput
+  daysToManufacture: ComparableInt32OperationFilterInput
+  productLine: StringOperationFilterInput
+  class: StringOperationFilterInput
+  style: StringOperationFilterInput
+  productSubcategoryId: ComparableNullableOfInt32OperationFilterInput
+  productModelId: ComparableNullableOfInt32OperationFilterInput
+  sellStartDate: ComparableDateTimeOperationFilterInput
+  sellEndDate: ComparableNullableOfDateTimeOperationFilterInput
+  discontinuedDate: ComparableNullableOfDateTimeOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  productModel: ProductModelFilterInput
+  productSubcategory: ProductSubcategoryFilterInput
+  sizeUnitMeasureCodeNavigation: UnitMeasureFilterInput
+  weightUnitMeasureCodeNavigation: UnitMeasureFilterInput
+  billOfMaterialComponents: ListFilterInputTypeOfBillOfMaterialFilterInput
+  billOfMaterialProductAssemblies: ListFilterInputTypeOfBillOfMaterialFilterInput
+  productCostHistories: ListFilterInputTypeOfProductCostHistoryFilterInput
+  productInventories: ListFilterInputTypeOfProductInventoryFilterInput
+  productListPriceHistories: ListFilterInputTypeOfProductListPriceHistoryFilterInput
+  productProductPhotos: ListFilterInputTypeOfProductProductPhotoFilterInput
+  productReviews: ListFilterInputTypeOfProductReviewFilterInput
+  productVendors: ListFilterInputTypeOfProductVendorFilterInput
+  purchaseOrderDetails: ListFilterInputTypeOfPurchaseOrderDetailFilterInput
+  shoppingCartItems: ListFilterInputTypeOfShoppingCartItemFilterInput
+  specialOfferProducts: ListFilterInputTypeOfSpecialOfferProductFilterInput
+  transactionHistories: ListFilterInputTypeOfTransactionHistoryFilterInput
+  workOrders: ListFilterInputTypeOfWorkOrderFilterInput
+  salesOrderDetails: ListFilterInputTypeOfSalesOrderDetailFilterInput
+}
+
+input ProductSortInput {
+  productId: SortEnumType
+  name: SortEnumType
+  productNumber: SortEnumType
+  makeFlag: SortEnumType
+  finishedGoodsFlag: SortEnumType
+  color: SortEnumType
+  safetyStockLevel: SortEnumType
+  reorderPoint: SortEnumType
+  standardCost: SortEnumType
+  listPrice: SortEnumType
+  size: SortEnumType
+  sizeUnitMeasureCode: SortEnumType
+  weightUnitMeasureCode: SortEnumType
+  weight: SortEnumType
+  daysToManufacture: SortEnumType
+  productLine: SortEnumType
+  class: SortEnumType
+  style: SortEnumType
+  productSubcategoryId: SortEnumType
+  productModelId: SortEnumType
+  sellStartDate: SortEnumType
+  sellEndDate: SortEnumType
+  discontinuedDate: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  productModel: ProductModelSortInput
+  productSubcategory: ProductSubcategorySortInput
+  sizeUnitMeasureCodeNavigation: UnitMeasureSortInput
+  weightUnitMeasureCodeNavigation: UnitMeasureSortInput
+}
+
+input PurchaseOrderHeaderFilterInput {
+  and: [PurchaseOrderHeaderFilterInput!]
+  or: [PurchaseOrderHeaderFilterInput!]
+  purchaseOrderId: ComparableInt32OperationFilterInput
+  revisionNumber: ComparableByteOperationFilterInput
+  status: ComparableByteOperationFilterInput
+  employeeId: ComparableInt32OperationFilterInput
+  vendorId: ComparableInt32OperationFilterInput
+  shipMethodId: ComparableInt32OperationFilterInput
+  orderDate: ComparableDateTimeOperationFilterInput
+  shipDate: ComparableNullableOfDateTimeOperationFilterInput
+  subTotal: ComparableDecimalOperationFilterInput
+  taxAmt: ComparableDecimalOperationFilterInput
+  freight: ComparableDecimalOperationFilterInput
+  totalDue: ComparableDecimalOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  employee: EmployeeFilterInput
+  shipMethod: ShipMethodFilterInput
+  vendor: VendorFilterInput
+  purchaseOrderDetails: ListFilterInputTypeOfPurchaseOrderDetailFilterInput
+}
+
+input PurchaseOrderHeaderSortInput {
+  purchaseOrderId: SortEnumType
+  revisionNumber: SortEnumType
+  status: SortEnumType
+  employeeId: SortEnumType
+  vendorId: SortEnumType
+  shipMethodId: SortEnumType
+  orderDate: SortEnumType
+  shipDate: SortEnumType
+  subTotal: SortEnumType
+  taxAmt: SortEnumType
+  freight: SortEnumType
+  totalDue: SortEnumType
+  modifiedDate: SortEnumType
+  employee: EmployeeSortInput
+  shipMethod: ShipMethodSortInput
+  vendor: VendorSortInput
+}
+
+input SalesOrderHeaderFilterInput {
+  and: [SalesOrderHeaderFilterInput!]
+  or: [SalesOrderHeaderFilterInput!]
+  salesOrderId: ComparableInt32OperationFilterInput
+  revisionNumber: ComparableByteOperationFilterInput
+  orderDate: ComparableDateTimeOperationFilterInput
+  dueDate: ComparableDateTimeOperationFilterInput
+  shipDate: ComparableNullableOfDateTimeOperationFilterInput
+  status: ComparableByteOperationFilterInput
+  onlineOrderFlag: BooleanOperationFilterInput
+  salesOrderNumber: StringOperationFilterInput
+  purchaseOrderNumber: StringOperationFilterInput
+  accountNumber: StringOperationFilterInput
+  customerId: ComparableInt32OperationFilterInput
+  salesPersonId: ComparableNullableOfInt32OperationFilterInput
+  territoryId: ComparableNullableOfInt32OperationFilterInput
+  billToAddressId: ComparableInt32OperationFilterInput
+  shipToAddressId: ComparableInt32OperationFilterInput
+  shipMethodId: ComparableInt32OperationFilterInput
+  creditCardId: ComparableNullableOfInt32OperationFilterInput
+  creditCardApprovalCode: StringOperationFilterInput
+  currencyRateId: ComparableNullableOfInt32OperationFilterInput
+  subTotal: ComparableDecimalOperationFilterInput
+  taxAmt: ComparableDecimalOperationFilterInput
+  freight: ComparableDecimalOperationFilterInput
+  totalDue: ComparableDecimalOperationFilterInput
+  comment: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  billToAddress: AddressFilterInput
+  creditCard: CreditCardFilterInput
+  currencyRate: CurrencyRateFilterInput
+  customer: CustomerFilterInput
+  salesPerson: SalesPersonFilterInput
+  shipMethod: ShipMethodFilterInput
+  shipToAddress: AddressFilterInput
+  territory: SalesTerritoryFilterInput
+  salesOrderDetails: ListFilterInputTypeOfSalesOrderDetailFilterInput
+  salesOrderHeaderSalesReasons: ListFilterInputTypeOfSalesOrderHeaderSalesReasonFilterInput
+}
+
+input SalesOrderHeaderSortInput {
+  salesOrderId: SortEnumType
+  revisionNumber: SortEnumType
+  orderDate: SortEnumType
+  dueDate: SortEnumType
+  shipDate: SortEnumType
+  status: SortEnumType
+  onlineOrderFlag: SortEnumType
+  salesOrderNumber: SortEnumType
+  purchaseOrderNumber: SortEnumType
+  accountNumber: SortEnumType
+  customerId: SortEnumType
+  salesPersonId: SortEnumType
+  territoryId: SortEnumType
+  billToAddressId: SortEnumType
+  shipToAddressId: SortEnumType
+  shipMethodId: SortEnumType
+  creditCardId: SortEnumType
+  creditCardApprovalCode: SortEnumType
+  currencyRateId: SortEnumType
+  subTotal: SortEnumType
+  taxAmt: SortEnumType
+  freight: SortEnumType
+  totalDue: SortEnumType
+  comment: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  billToAddress: AddressSortInput
+  creditCard: CreditCardSortInput
+  currencyRate: CurrencyRateSortInput
+  customer: CustomerSortInput
+  salesPerson: SalesPersonSortInput
+  shipMethod: ShipMethodSortInput
+  shipToAddress: AddressSortInput
+  territory: SalesTerritorySortInput
+}
+
+input StoreFilterInput {
+  and: [StoreFilterInput!]
+  or: [StoreFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  salesPersonId: ComparableNullableOfInt32OperationFilterInput
+  demographics: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: BusinessEntityFilterInput
+  salesPerson: SalesPersonFilterInput
+  customers: ListFilterInputTypeOfCustomerFilterInput
+}
+
+input StoreSortInput {
+  businessEntityId: SortEnumType
+  name: SortEnumType
+  salesPersonId: SortEnumType
+  demographics: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  businessEntity: BusinessEntitySortInput
+  salesPerson: SalesPersonSortInput
+}
+
+input VendorFilterInput {
+  and: [VendorFilterInput!]
+  or: [VendorFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  accountNumber: StringOperationFilterInput
+  name: StringOperationFilterInput
+  creditRating: ComparableByteOperationFilterInput
+  preferredVendorStatus: BooleanOperationFilterInput
+  activeFlag: BooleanOperationFilterInput
+  purchasingWebServiceUrl: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: BusinessEntityFilterInput
+  productVendors: ListFilterInputTypeOfProductVendorFilterInput
+  purchaseOrderHeaders: ListFilterInputTypeOfPurchaseOrderHeaderFilterInput
+}
+
+input VendorSortInput {
+  businessEntityId: SortEnumType
+  accountNumber: SortEnumType
+  name: SortEnumType
+  creditRating: SortEnumType
+  preferredVendorStatus: SortEnumType
+  activeFlag: SortEnumType
+  purchasingWebServiceUrl: SortEnumType
+  modifiedDate: SortEnumType
+  businessEntity: BusinessEntitySortInput
+}
+
+input WorkOrderFilterInput {
+  and: [WorkOrderFilterInput!]
+  or: [WorkOrderFilterInput!]
+  workOrderId: ComparableInt32OperationFilterInput
+  productId: ComparableInt32OperationFilterInput
+  orderQty: ComparableInt32OperationFilterInput
+  stockedQty: ComparableInt32OperationFilterInput
+  scrappedQty: ComparableInt16OperationFilterInput
+  startDate: ComparableDateTimeOperationFilterInput
+  endDate: ComparableNullableOfDateTimeOperationFilterInput
+  dueDate: ComparableDateTimeOperationFilterInput
+  scrapReasonId: ComparableNullableOfInt16OperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+  scrapReason: ScrapReasonFilterInput
+  workOrderRoutings: ListFilterInputTypeOfWorkOrderRoutingFilterInput
+}
+
+input WorkOrderSortInput {
+  workOrderId: SortEnumType
+  productId: SortEnumType
+  orderQty: SortEnumType
+  stockedQty: SortEnumType
+  scrappedQty: SortEnumType
+  startDate: SortEnumType
+  endDate: SortEnumType
+  dueDate: SortEnumType
+  scrapReasonId: SortEnumType
+  modifiedDate: SortEnumType
+  product: ProductSortInput
+  scrapReason: ScrapReasonSortInput
+}
+
+"A connection to a list of items."
+type CustomerConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [CustomerEdge!]
+  "A flattened list of the nodes."
+  nodes: [Customer]
+}
+
+"A connection to a list of items."
+type DepartmentConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [DepartmentEdge!]
+  "A flattened list of the nodes."
+  nodes: [Department]
+}
+
+"A connection to a list of items."
+type EmployeeConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [EmployeeEdge!]
+  "A flattened list of the nodes."
+  nodes: [Employee]
+}
+
+"A connection to a list of items."
+type LocationConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [LocationEdge!]
+  "A flattened list of the nodes."
+  nodes: [Location]
+}
+
+"A connection to a list of items."
+type ProductConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ProductEdge!]
+  "A flattened list of the nodes."
+  nodes: [Product]
+}
+
+"A connection to a list of items."
+type PurchaseOrderHeaderConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [PurchaseOrderHeaderEdge!]
+  "A flattened list of the nodes."
+  nodes: [PurchaseOrderHeader]
+}
+
+"A connection to a list of items."
+type SalesOrderHeaderConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [SalesOrderHeaderEdge!]
+  "A flattened list of the nodes."
+  nodes: [SalesOrderHeader]
+}
+
+"A connection to a list of items."
+type StoreConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [StoreEdge!]
+  "A flattened list of the nodes."
+  nodes: [Store]
+}
+
+"A connection to a list of items."
+type VendorConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [VendorEdge!]
+  "A flattened list of the nodes."
+  nodes: [Vendor]
+}
+
+"A connection to a list of items."
+type WorkOrderConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [WorkOrderEdge!]
+  "A flattened list of the nodes."
+  nodes: [WorkOrder]
+}
+
+input ComparableInt32OperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int!]
+  nin: [Int!]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input ComparableNullableOfInt32OperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int]
+  nin: [Int]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input ComparableGuidOperationFilterInput {
+  eq: UUID
+  neq: UUID
+  in: [UUID!]
+  nin: [UUID!]
+  gt: UUID
+  ngt: UUID
+  gte: UUID
+  ngte: UUID
+  lt: UUID
+  nlt: UUID
+  lte: UUID
+  nlte: UUID
+}
+
+input ComparableDateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime!]
+  nin: [DateTime!]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+input PersonFilterInput {
+  and: [PersonFilterInput!]
+  or: [PersonFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  personType: StringOperationFilterInput
+  nameStyle: BooleanOperationFilterInput
+  title: StringOperationFilterInput
+  firstName: StringOperationFilterInput
+  middleName: StringOperationFilterInput
+  lastName: StringOperationFilterInput
+  suffix: StringOperationFilterInput
+  emailPromotion: ComparableInt32OperationFilterInput
+  additionalContactInfo: StringOperationFilterInput
+  demographics: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: BusinessEntityFilterInput
+  employee: EmployeeFilterInput
+  password: PasswordFilterInput
+  businessEntityContacts: ListFilterInputTypeOfBusinessEntityContactFilterInput
+  customers: ListFilterInputTypeOfCustomerFilterInput
+  emailAddresses: ListFilterInputTypeOfEmailAddressFilterInput
+  personCreditCards: ListFilterInputTypeOfPersonCreditCardFilterInput
+  personPhones: ListFilterInputTypeOfPersonPhoneFilterInput
+}
+
+input SalesTerritoryFilterInput {
+  and: [SalesTerritoryFilterInput!]
+  or: [SalesTerritoryFilterInput!]
+  territoryId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  countryRegionCode: StringOperationFilterInput
+  group: StringOperationFilterInput
+  salesYtd: ComparableDecimalOperationFilterInput
+  salesLastYear: ComparableDecimalOperationFilterInput
+  costYtd: ComparableDecimalOperationFilterInput
+  costLastYear: ComparableDecimalOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  countryRegionCodeNavigation: CountryRegionFilterInput
+  customers: ListFilterInputTypeOfCustomerFilterInput
+  salesOrderHeaders: ListFilterInputTypeOfSalesOrderHeaderFilterInput
+  salesPeople: ListFilterInputTypeOfSalesPersonFilterInput
+  salesTerritoryHistories: ListFilterInputTypeOfSalesTerritoryHistoryFilterInput
+  stateProvinces: ListFilterInputTypeOfStateProvinceFilterInput
+}
+
+input ListFilterInputTypeOfSalesOrderHeaderFilterInput {
+  all: SalesOrderHeaderFilterInput
+  none: SalesOrderHeaderFilterInput
+  some: SalesOrderHeaderFilterInput
+  any: Boolean
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+input PersonSortInput {
+  businessEntityId: SortEnumType
+  personType: SortEnumType
+  nameStyle: SortEnumType
+  title: SortEnumType
+  firstName: SortEnumType
+  middleName: SortEnumType
+  lastName: SortEnumType
+  suffix: SortEnumType
+  emailPromotion: SortEnumType
+  additionalContactInfo: SortEnumType
+  demographics: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  businessEntity: BusinessEntitySortInput
+  employee: EmployeeSortInput
+  password: PasswordSortInput
+}
+
+input SalesTerritorySortInput {
+  territoryId: SortEnumType
+  name: SortEnumType
+  countryRegionCode: SortEnumType
+  group: SortEnumType
+  salesYtd: SortEnumType
+  salesLastYear: SortEnumType
+  costYtd: SortEnumType
+  costLastYear: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  countryRegionCodeNavigation: CountryRegionSortInput
+}
+
+input ComparableInt16OperationFilterInput {
+  eq: Short
+  neq: Short
+  in: [Short!]
+  nin: [Short!]
+  gt: Short
+  ngt: Short
+  gte: Short
+  ngte: Short
+  lt: Short
+  nlt: Short
+  lte: Short
+  nlte: Short
+}
+
+input ListFilterInputTypeOfEmployeeDepartmentHistoryFilterInput {
+  all: EmployeeDepartmentHistoryFilterInput
+  none: EmployeeDepartmentHistoryFilterInput
+  some: EmployeeDepartmentHistoryFilterInput
+  any: Boolean
+}
+
+input ComparableNullableOfInt16OperationFilterInput {
+  eq: Short
+  neq: Short
+  in: [Short]
+  nin: [Short]
+  gt: Short
+  ngt: Short
+  gte: Short
+  ngte: Short
+  lt: Short
+  nlt: Short
+  lte: Short
+  nlte: Short
+}
+
+input BooleanOperationFilterInput {
+  eq: Boolean
+  neq: Boolean
+}
+
+input SalesPersonFilterInput {
+  and: [SalesPersonFilterInput!]
+  or: [SalesPersonFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  territoryId: ComparableNullableOfInt32OperationFilterInput
+  salesQuota: ComparableNullableOfDecimalOperationFilterInput
+  bonus: ComparableDecimalOperationFilterInput
+  commissionPct: ComparableDecimalOperationFilterInput
+  salesYtd: ComparableDecimalOperationFilterInput
+  salesLastYear: ComparableDecimalOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: EmployeeFilterInput
+  territory: SalesTerritoryFilterInput
+  salesOrderHeaders: ListFilterInputTypeOfSalesOrderHeaderFilterInput
+  salesPersonQuotaHistories: ListFilterInputTypeOfSalesPersonQuotaHistoryFilterInput
+  salesTerritoryHistories: ListFilterInputTypeOfSalesTerritoryHistoryFilterInput
+  stores: ListFilterInputTypeOfStoreFilterInput
+}
+
+input ListFilterInputTypeOfEmployeePayHistoryFilterInput {
+  all: EmployeePayHistoryFilterInput
+  none: EmployeePayHistoryFilterInput
+  some: EmployeePayHistoryFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfJobCandidateFilterInput {
+  all: JobCandidateFilterInput
+  none: JobCandidateFilterInput
+  some: JobCandidateFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfPurchaseOrderHeaderFilterInput {
+  all: PurchaseOrderHeaderFilterInput
+  none: PurchaseOrderHeaderFilterInput
+  some: PurchaseOrderHeaderFilterInput
+  any: Boolean
+}
+
+input SalesPersonSortInput {
+  businessEntityId: SortEnumType
+  territoryId: SortEnumType
+  salesQuota: SortEnumType
+  bonus: SortEnumType
+  commissionPct: SortEnumType
+  salesYtd: SortEnumType
+  salesLastYear: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  businessEntity: EmployeeSortInput
+  territory: SalesTerritorySortInput
+}
+
+input ComparableDecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  in: [Decimal!]
+  nin: [Decimal!]
+  gt: Decimal
+  ngt: Decimal
+  gte: Decimal
+  ngte: Decimal
+  lt: Decimal
+  nlt: Decimal
+  lte: Decimal
+  nlte: Decimal
+}
+
+input ListFilterInputTypeOfProductInventoryFilterInput {
+  all: ProductInventoryFilterInput
+  none: ProductInventoryFilterInput
+  some: ProductInventoryFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfWorkOrderRoutingFilterInput {
+  all: WorkOrderRoutingFilterInput
+  none: WorkOrderRoutingFilterInput
+  some: WorkOrderRoutingFilterInput
+  any: Boolean
+}
+
+input ComparableNullableOfDecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  in: [Decimal]
+  nin: [Decimal]
+  gt: Decimal
+  ngt: Decimal
+  gte: Decimal
+  ngte: Decimal
+  lt: Decimal
+  nlt: Decimal
+  lte: Decimal
+  nlte: Decimal
+}
+
+input ComparableNullableOfDateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime]
+  nin: [DateTime]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+input ProductModelFilterInput {
+  and: [ProductModelFilterInput!]
+  or: [ProductModelFilterInput!]
+  productModelId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  catalogDescription: StringOperationFilterInput
+  instructions: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  productModelIllustrations: ListFilterInputTypeOfProductModelIllustrationFilterInput
+  productModelProductDescriptionCultures: ListFilterInputTypeOfProductModelProductDescriptionCultureFilterInput
+  products: ListFilterInputTypeOfProductFilterInput
+}
+
+input ProductSubcategoryFilterInput {
+  and: [ProductSubcategoryFilterInput!]
+  or: [ProductSubcategoryFilterInput!]
+  productSubcategoryId: ComparableInt32OperationFilterInput
+  productCategoryId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  productCategory: ProductCategoryFilterInput
+  products: ListFilterInputTypeOfProductFilterInput
+}
+
+input UnitMeasureFilterInput {
+  and: [UnitMeasureFilterInput!]
+  or: [UnitMeasureFilterInput!]
+  unitMeasureCode: StringOperationFilterInput
+  name: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  billOfMaterials: ListFilterInputTypeOfBillOfMaterialFilterInput
+  productSizeUnitMeasureCodeNavigations: ListFilterInputTypeOfProductFilterInput
+  productVendors: ListFilterInputTypeOfProductVendorFilterInput
+  productWeightUnitMeasureCodeNavigations: ListFilterInputTypeOfProductFilterInput
+}
+
+input ListFilterInputTypeOfBillOfMaterialFilterInput {
+  all: BillOfMaterialFilterInput
+  none: BillOfMaterialFilterInput
+  some: BillOfMaterialFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfProductCostHistoryFilterInput {
+  all: ProductCostHistoryFilterInput
+  none: ProductCostHistoryFilterInput
+  some: ProductCostHistoryFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfProductListPriceHistoryFilterInput {
+  all: ProductListPriceHistoryFilterInput
+  none: ProductListPriceHistoryFilterInput
+  some: ProductListPriceHistoryFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfProductProductPhotoFilterInput {
+  all: ProductProductPhotoFilterInput
+  none: ProductProductPhotoFilterInput
+  some: ProductProductPhotoFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfProductReviewFilterInput {
+  all: ProductReviewFilterInput
+  none: ProductReviewFilterInput
+  some: ProductReviewFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfProductVendorFilterInput {
+  all: ProductVendorFilterInput
+  none: ProductVendorFilterInput
+  some: ProductVendorFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfPurchaseOrderDetailFilterInput {
+  all: PurchaseOrderDetailFilterInput
+  none: PurchaseOrderDetailFilterInput
+  some: PurchaseOrderDetailFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfShoppingCartItemFilterInput {
+  all: ShoppingCartItemFilterInput
+  none: ShoppingCartItemFilterInput
+  some: ShoppingCartItemFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfSpecialOfferProductFilterInput {
+  all: SpecialOfferProductFilterInput
+  none: SpecialOfferProductFilterInput
+  some: SpecialOfferProductFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfTransactionHistoryFilterInput {
+  all: TransactionHistoryFilterInput
+  none: TransactionHistoryFilterInput
+  some: TransactionHistoryFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfWorkOrderFilterInput {
+  all: WorkOrderFilterInput
+  none: WorkOrderFilterInput
+  some: WorkOrderFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfSalesOrderDetailFilterInput {
+  all: SalesOrderDetailFilterInput
+  none: SalesOrderDetailFilterInput
+  some: SalesOrderDetailFilterInput
+  any: Boolean
+}
+
+input ProductModelSortInput {
+  productModelId: SortEnumType
+  name: SortEnumType
+  catalogDescription: SortEnumType
+  instructions: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+input ProductSubcategorySortInput {
+  productSubcategoryId: SortEnumType
+  productCategoryId: SortEnumType
+  name: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  productCategory: ProductCategorySortInput
+}
+
+input UnitMeasureSortInput {
+  unitMeasureCode: SortEnumType
+  name: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+input ComparableByteOperationFilterInput {
+  eq: Byte
+  neq: Byte
+  in: [Byte!]
+  nin: [Byte!]
+  gt: Byte
+  ngt: Byte
+  gte: Byte
+  ngte: Byte
+  lt: Byte
+  nlt: Byte
+  lte: Byte
+  nlte: Byte
+}
+
+input ShipMethodFilterInput {
+  and: [ShipMethodFilterInput!]
+  or: [ShipMethodFilterInput!]
+  shipMethodId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  shipBase: ComparableDecimalOperationFilterInput
+  shipRate: ComparableDecimalOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  purchaseOrderHeaders: ListFilterInputTypeOfPurchaseOrderHeaderFilterInput
+  salesOrderHeaders: ListFilterInputTypeOfSalesOrderHeaderFilterInput
+}
+
+input ShipMethodSortInput {
+  shipMethodId: SortEnumType
+  name: SortEnumType
+  shipBase: SortEnumType
+  shipRate: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+input AddressFilterInput {
+  and: [AddressFilterInput!]
+  or: [AddressFilterInput!]
+  addressId: ComparableInt32OperationFilterInput
+  addressLine1: StringOperationFilterInput
+  addressLine2: StringOperationFilterInput
+  city: StringOperationFilterInput
+  stateProvinceId: ComparableInt32OperationFilterInput
+  postalCode: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  stateProvince: StateProvinceFilterInput
+  businessEntityAddresses: ListFilterInputTypeOfBusinessEntityAddressFilterInput
+  salesOrderHeaderBillToAddresses: ListFilterInputTypeOfSalesOrderHeaderFilterInput
+  salesOrderHeaderShipToAddresses: ListFilterInputTypeOfSalesOrderHeaderFilterInput
+}
+
+input CreditCardFilterInput {
+  and: [CreditCardFilterInput!]
+  or: [CreditCardFilterInput!]
+  creditCardId: ComparableInt32OperationFilterInput
+  cardType: StringOperationFilterInput
+  cardNumber: StringOperationFilterInput
+  expMonth: ComparableByteOperationFilterInput
+  expYear: ComparableInt16OperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  personCreditCards: ListFilterInputTypeOfPersonCreditCardFilterInput
+  salesOrderHeaders: ListFilterInputTypeOfSalesOrderHeaderFilterInput
+}
+
+input CurrencyRateFilterInput {
+  and: [CurrencyRateFilterInput!]
+  or: [CurrencyRateFilterInput!]
+  currencyRateId: ComparableInt32OperationFilterInput
+  currencyRateDate: ComparableDateTimeOperationFilterInput
+  fromCurrencyCode: StringOperationFilterInput
+  toCurrencyCode: StringOperationFilterInput
+  averageRate: ComparableDecimalOperationFilterInput
+  endOfDayRate: ComparableDecimalOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  fromCurrencyCodeNavigation: CurrencyFilterInput
+  toCurrencyCodeNavigation: CurrencyFilterInput
+  salesOrderHeaders: ListFilterInputTypeOfSalesOrderHeaderFilterInput
+}
+
+input ListFilterInputTypeOfSalesOrderHeaderSalesReasonFilterInput {
+  all: SalesOrderHeaderSalesReasonFilterInput
+  none: SalesOrderHeaderSalesReasonFilterInput
+  some: SalesOrderHeaderSalesReasonFilterInput
+  any: Boolean
+}
+
+input AddressSortInput {
+  addressId: SortEnumType
+  addressLine1: SortEnumType
+  addressLine2: SortEnumType
+  city: SortEnumType
+  stateProvinceId: SortEnumType
+  postalCode: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  stateProvince: StateProvinceSortInput
+}
+
+input CreditCardSortInput {
+  creditCardId: SortEnumType
+  cardType: SortEnumType
+  cardNumber: SortEnumType
+  expMonth: SortEnumType
+  expYear: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+input CurrencyRateSortInput {
+  currencyRateId: SortEnumType
+  currencyRateDate: SortEnumType
+  fromCurrencyCode: SortEnumType
+  toCurrencyCode: SortEnumType
+  averageRate: SortEnumType
+  endOfDayRate: SortEnumType
+  modifiedDate: SortEnumType
+  fromCurrencyCodeNavigation: CurrencySortInput
+  toCurrencyCodeNavigation: CurrencySortInput
+}
+
+input BusinessEntityFilterInput {
+  and: [BusinessEntityFilterInput!]
+  or: [BusinessEntityFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  person: PersonFilterInput
+  store: StoreFilterInput
+  vendor: VendorFilterInput
+  businessEntityAddresses: ListFilterInputTypeOfBusinessEntityAddressFilterInput
+  businessEntityContacts: ListFilterInputTypeOfBusinessEntityContactFilterInput
+}
+
+input ListFilterInputTypeOfCustomerFilterInput {
+  all: CustomerFilterInput
+  none: CustomerFilterInput
+  some: CustomerFilterInput
+  any: Boolean
+}
+
+input BusinessEntitySortInput {
+  businessEntityId: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  person: PersonSortInput
+  store: StoreSortInput
+  vendor: VendorSortInput
+}
+
+input ScrapReasonFilterInput {
+  and: [ScrapReasonFilterInput!]
+  or: [ScrapReasonFilterInput!]
+  scrapReasonId: ComparableInt16OperationFilterInput
+  name: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  workOrders: ListFilterInputTypeOfWorkOrderFilterInput
+}
+
+input ScrapReasonSortInput {
+  scrapReasonId: SortEnumType
+  name: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+type Customer {
+  customerId: Int!
+  personId: Int
+  storeId: Int
+  territoryId: Int
+  accountNumber: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  person: Person
+  store: Store
+  territory: SalesTerritory
+  salesOrderHeaders: [SalesOrderHeader]
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+  "Indicates whether more edges exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more edges exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+}
+
+"An edge in a connection."
+type CustomerEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Customer
+}
+
+type Department {
+  departmentId: Short!
+  name: String
+  groupName: String
+  modifiedDate: DateTime!
+  employeeDepartmentHistories: [EmployeeDepartmentHistory]
+}
+
+"An edge in a connection."
+type DepartmentEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Department
+}
+
+type Employee {
+  businessEntityId: Int!
+  nationalIdnumber: String
+  loginId: String
+  organizationLevel: Short
+  jobTitle: String
+  birthDate: DateTime!
+  maritalStatus: String
+  gender: String
+  hireDate: DateTime!
+  salariedFlag: Boolean
+  vacationHours: Short!
+  sickLeaveHours: Short!
+  currentFlag: Boolean
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntity: Person
+  salesPerson: SalesPerson
+  employeeDepartmentHistories: [EmployeeDepartmentHistory]
+  employeePayHistories: [EmployeePayHistory]
+  jobCandidates: [JobCandidate]
+  purchaseOrderHeaders: [PurchaseOrderHeader]
+}
+
+"An edge in a connection."
+type EmployeeEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Employee
+}
+
+type Location {
+  locationId: Short!
+  name: String
+  costRate: Decimal!
+  availability: Decimal!
+  modifiedDate: DateTime!
+  productInventories: [ProductInventory]
+  workOrderRoutings: [WorkOrderRouting]
+}
+
+"An edge in a connection."
+type LocationEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Location
+}
+
+type Product {
+  productId: Int!
+  name: String
+  productNumber: String
+  makeFlag: Boolean
+  finishedGoodsFlag: Boolean
+  color: String
+  safetyStockLevel: Short!
+  reorderPoint: Short!
+  standardCost: Decimal!
+  listPrice: Decimal!
+  size: String
+  sizeUnitMeasureCode: String
+  weightUnitMeasureCode: String
+  weight: Decimal
+  daysToManufacture: Int!
+  productLine: String
+  class: String
+  style: String
+  productSubcategoryId: Int
+  productModelId: Int
+  sellStartDate: DateTime!
+  sellEndDate: DateTime
+  discontinuedDate: DateTime
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  productModel: ProductModel
+  productSubcategory: ProductSubcategory
+  sizeUnitMeasureCodeNavigation: UnitMeasure
+  weightUnitMeasureCodeNavigation: UnitMeasure
+  billOfMaterialComponents: [BillOfMaterial]
+  billOfMaterialProductAssemblies: [BillOfMaterial]
+  productCostHistories: [ProductCostHistory]
+  productInventories: [ProductInventory]
+  productListPriceHistories: [ProductListPriceHistory]
+  productProductPhotos: [ProductProductPhoto]
+  productReviews: [ProductReview]
+  productVendors: [ProductVendor]
+  purchaseOrderDetails: [PurchaseOrderDetail]
+  shoppingCartItems: [ShoppingCartItem]
+  specialOfferProducts: [SpecialOfferProduct]
+  transactionHistories: [TransactionHistory]
+  workOrders: [WorkOrder]
+  salesOrderDetails: [SalesOrderDetail]
+}
+
+"An edge in a connection."
+type ProductEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Product
+}
+
+type PurchaseOrderHeader {
+  purchaseOrderId: Int!
+  revisionNumber: Byte!
+  status: Byte!
+  employeeId: Int!
+  vendorId: Int!
+  shipMethodId: Int!
+  orderDate: DateTime!
+  shipDate: DateTime
+  subTotal: Decimal!
+  taxAmt: Decimal!
+  freight: Decimal!
+  totalDue: Decimal!
+  modifiedDate: DateTime!
+  employee: Employee
+  shipMethod: ShipMethod
+  vendor: Vendor
+  purchaseOrderDetails: [PurchaseOrderDetail]
+}
+
+"An edge in a connection."
+type PurchaseOrderHeaderEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: PurchaseOrderHeader
+}
+
+type SalesOrderHeader {
+  salesOrderId: Int!
+  revisionNumber: Byte!
+  orderDate: DateTime!
+  dueDate: DateTime!
+  shipDate: DateTime
+  status: Byte!
+  onlineOrderFlag: Boolean
+  salesOrderNumber: String
+  purchaseOrderNumber: String
+  accountNumber: String
+  customerId: Int!
+  salesPersonId: Int
+  territoryId: Int
+  billToAddressId: Int!
+  shipToAddressId: Int!
+  shipMethodId: Int!
+  creditCardId: Int
+  creditCardApprovalCode: String
+  currencyRateId: Int
+  subTotal: Decimal!
+  taxAmt: Decimal!
+  freight: Decimal!
+  totalDue: Decimal!
+  comment: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  billToAddress: Address
+  creditCard: CreditCard
+  currencyRate: CurrencyRate
+  customer: Customer
+  salesPerson: SalesPerson
+  shipMethod: ShipMethod
+  shipToAddress: Address
+  territory: SalesTerritory
+  salesOrderDetails: [SalesOrderDetail]
+  salesOrderHeaderSalesReasons: [SalesOrderHeaderSalesReason]
+}
+
+"An edge in a connection."
+type SalesOrderHeaderEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: SalesOrderHeader
+}
+
+type Store {
+  businessEntityId: Int!
+  name: String
+  salesPersonId: Int
+  demographics: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntity: BusinessEntity
+  salesPerson: SalesPerson
+  customers: [Customer]
+}
+
+"An edge in a connection."
+type StoreEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Store
+}
+
+type Vendor {
+  businessEntityId: Int!
+  accountNumber: String
+  name: String
+  creditRating: Byte!
+  preferredVendorStatus: Boolean
+  activeFlag: Boolean
+  purchasingWebServiceUrl: String
+  modifiedDate: DateTime!
+  businessEntity: BusinessEntity
+  productVendors: [ProductVendor]
+  purchaseOrderHeaders: [PurchaseOrderHeader]
+}
+
+"An edge in a connection."
+type VendorEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Vendor
+}
+
+type WorkOrder {
+  workOrderId: Int!
+  productId: Int!
+  orderQty: Int!
+  stockedQty: Int!
+  scrappedQty: Short!
+  startDate: DateTime!
+  endDate: DateTime
+  dueDate: DateTime!
+  scrapReasonId: Short
+  modifiedDate: DateTime!
+  product: Product
+  scrapReason: ScrapReason
+  workOrderRoutings: [WorkOrderRouting]
+}
+
+"An edge in a connection."
+type WorkOrderEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: WorkOrder
+}
+
+input PasswordFilterInput {
+  and: [PasswordFilterInput!]
+  or: [PasswordFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  passwordHash: StringOperationFilterInput
+  passwordSalt: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: PersonFilterInput
+}
+
+input ListFilterInputTypeOfBusinessEntityContactFilterInput {
+  all: BusinessEntityContactFilterInput
+  none: BusinessEntityContactFilterInput
+  some: BusinessEntityContactFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfEmailAddressFilterInput {
+  all: EmailAddressFilterInput
+  none: EmailAddressFilterInput
+  some: EmailAddressFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfPersonCreditCardFilterInput {
+  all: PersonCreditCardFilterInput
+  none: PersonCreditCardFilterInput
+  some: PersonCreditCardFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfPersonPhoneFilterInput {
+  all: PersonPhoneFilterInput
+  none: PersonPhoneFilterInput
+  some: PersonPhoneFilterInput
+  any: Boolean
+}
+
+input CountryRegionFilterInput {
+  and: [CountryRegionFilterInput!]
+  or: [CountryRegionFilterInput!]
+  countryRegionCode: StringOperationFilterInput
+  name: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  countryRegionCurrencies: ListFilterInputTypeOfCountryRegionCurrencyFilterInput
+  salesTerritories: ListFilterInputTypeOfSalesTerritoryFilterInput
+  stateProvinces: ListFilterInputTypeOfStateProvinceFilterInput
+}
+
+input ListFilterInputTypeOfSalesPersonFilterInput {
+  all: SalesPersonFilterInput
+  none: SalesPersonFilterInput
+  some: SalesPersonFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfSalesTerritoryHistoryFilterInput {
+  all: SalesTerritoryHistoryFilterInput
+  none: SalesTerritoryHistoryFilterInput
+  some: SalesTerritoryHistoryFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfStateProvinceFilterInput {
+  all: StateProvinceFilterInput
+  none: StateProvinceFilterInput
+  some: StateProvinceFilterInput
+  any: Boolean
+}
+
+input PasswordSortInput {
+  businessEntityId: SortEnumType
+  passwordHash: SortEnumType
+  passwordSalt: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  businessEntity: PersonSortInput
+}
+
+input CountryRegionSortInput {
+  countryRegionCode: SortEnumType
+  name: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+input EmployeeDepartmentHistoryFilterInput {
+  and: [EmployeeDepartmentHistoryFilterInput!]
+  or: [EmployeeDepartmentHistoryFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  departmentId: ComparableInt16OperationFilterInput
+  shiftId: ComparableByteOperationFilterInput
+  startDate: ComparableDateTimeOperationFilterInput
+  endDate: ComparableNullableOfDateTimeOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: EmployeeFilterInput
+  department: DepartmentFilterInput
+  shift: ShiftFilterInput
+}
+
+input ListFilterInputTypeOfSalesPersonQuotaHistoryFilterInput {
+  all: SalesPersonQuotaHistoryFilterInput
+  none: SalesPersonQuotaHistoryFilterInput
+  some: SalesPersonQuotaHistoryFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfStoreFilterInput {
+  all: StoreFilterInput
+  none: StoreFilterInput
+  some: StoreFilterInput
+  any: Boolean
+}
+
+input EmployeePayHistoryFilterInput {
+  and: [EmployeePayHistoryFilterInput!]
+  or: [EmployeePayHistoryFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  rateChangeDate: ComparableDateTimeOperationFilterInput
+  rate: ComparableDecimalOperationFilterInput
+  payFrequency: ComparableByteOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: EmployeeFilterInput
+}
+
+input JobCandidateFilterInput {
+  and: [JobCandidateFilterInput!]
+  or: [JobCandidateFilterInput!]
+  jobCandidateId: ComparableInt32OperationFilterInput
+  businessEntityId: ComparableNullableOfInt32OperationFilterInput
+  resume: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: EmployeeFilterInput
+}
+
+input ProductInventoryFilterInput {
+  and: [ProductInventoryFilterInput!]
+  or: [ProductInventoryFilterInput!]
+  productId: ComparableInt32OperationFilterInput
+  locationId: ComparableInt16OperationFilterInput
+  shelf: StringOperationFilterInput
+  bin: ComparableByteOperationFilterInput
+  quantity: ComparableInt16OperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  location: LocationFilterInput
+  product: ProductFilterInput
+}
+
+input WorkOrderRoutingFilterInput {
+  and: [WorkOrderRoutingFilterInput!]
+  or: [WorkOrderRoutingFilterInput!]
+  workOrderId: ComparableInt32OperationFilterInput
+  productId: ComparableInt32OperationFilterInput
+  operationSequence: ComparableInt16OperationFilterInput
+  locationId: ComparableInt16OperationFilterInput
+  scheduledStartDate: ComparableDateTimeOperationFilterInput
+  scheduledEndDate: ComparableDateTimeOperationFilterInput
+  actualStartDate: ComparableNullableOfDateTimeOperationFilterInput
+  actualEndDate: ComparableNullableOfDateTimeOperationFilterInput
+  actualResourceHrs: ComparableNullableOfDecimalOperationFilterInput
+  plannedCost: ComparableDecimalOperationFilterInput
+  actualCost: ComparableNullableOfDecimalOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  location: LocationFilterInput
+  workOrder: WorkOrderFilterInput
+}
+
+input ListFilterInputTypeOfProductModelIllustrationFilterInput {
+  all: ProductModelIllustrationFilterInput
+  none: ProductModelIllustrationFilterInput
+  some: ProductModelIllustrationFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfProductModelProductDescriptionCultureFilterInput {
+  all: ProductModelProductDescriptionCultureFilterInput
+  none: ProductModelProductDescriptionCultureFilterInput
+  some: ProductModelProductDescriptionCultureFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfProductFilterInput {
+  all: ProductFilterInput
+  none: ProductFilterInput
+  some: ProductFilterInput
+  any: Boolean
+}
+
+input ProductCategoryFilterInput {
+  and: [ProductCategoryFilterInput!]
+  or: [ProductCategoryFilterInput!]
+  productCategoryId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  productSubcategories: ListFilterInputTypeOfProductSubcategoryFilterInput
+}
+
+input BillOfMaterialFilterInput {
+  and: [BillOfMaterialFilterInput!]
+  or: [BillOfMaterialFilterInput!]
+  billOfMaterialsId: ComparableInt32OperationFilterInput
+  productAssemblyId: ComparableNullableOfInt32OperationFilterInput
+  componentId: ComparableInt32OperationFilterInput
+  startDate: ComparableDateTimeOperationFilterInput
+  endDate: ComparableNullableOfDateTimeOperationFilterInput
+  unitMeasureCode: StringOperationFilterInput
+  bomlevel: ComparableInt16OperationFilterInput
+  perAssemblyQty: ComparableDecimalOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  component: ProductFilterInput
+  productAssembly: ProductFilterInput
+  unitMeasureCodeNavigation: UnitMeasureFilterInput
+}
+
+input ProductCostHistoryFilterInput {
+  and: [ProductCostHistoryFilterInput!]
+  or: [ProductCostHistoryFilterInput!]
+  productId: ComparableInt32OperationFilterInput
+  startDate: ComparableDateTimeOperationFilterInput
+  endDate: ComparableNullableOfDateTimeOperationFilterInput
+  standardCost: ComparableDecimalOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+}
+
+input ProductListPriceHistoryFilterInput {
+  and: [ProductListPriceHistoryFilterInput!]
+  or: [ProductListPriceHistoryFilterInput!]
+  productId: ComparableInt32OperationFilterInput
+  startDate: ComparableDateTimeOperationFilterInput
+  endDate: ComparableNullableOfDateTimeOperationFilterInput
+  listPrice: ComparableDecimalOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+}
+
+input ProductProductPhotoFilterInput {
+  and: [ProductProductPhotoFilterInput!]
+  or: [ProductProductPhotoFilterInput!]
+  productId: ComparableInt32OperationFilterInput
+  productPhotoId: ComparableInt32OperationFilterInput
+  primary: BooleanOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+  productPhoto: ProductPhotoFilterInput
+}
+
+input ProductReviewFilterInput {
+  and: [ProductReviewFilterInput!]
+  or: [ProductReviewFilterInput!]
+  productReviewId: ComparableInt32OperationFilterInput
+  productId: ComparableInt32OperationFilterInput
+  reviewerName: StringOperationFilterInput
+  reviewDate: ComparableDateTimeOperationFilterInput
+  emailAddress: StringOperationFilterInput
+  rating: ComparableInt32OperationFilterInput
+  comments: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+}
+
+input ProductVendorFilterInput {
+  and: [ProductVendorFilterInput!]
+  or: [ProductVendorFilterInput!]
+  productId: ComparableInt32OperationFilterInput
+  businessEntityId: ComparableInt32OperationFilterInput
+  averageLeadTime: ComparableInt32OperationFilterInput
+  standardPrice: ComparableDecimalOperationFilterInput
+  lastReceiptCost: ComparableNullableOfDecimalOperationFilterInput
+  lastReceiptDate: ComparableNullableOfDateTimeOperationFilterInput
+  minOrderQty: ComparableInt32OperationFilterInput
+  maxOrderQty: ComparableInt32OperationFilterInput
+  onOrderQty: ComparableNullableOfInt32OperationFilterInput
+  unitMeasureCode: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: VendorFilterInput
+  product: ProductFilterInput
+  unitMeasureCodeNavigation: UnitMeasureFilterInput
+}
+
+input PurchaseOrderDetailFilterInput {
+  and: [PurchaseOrderDetailFilterInput!]
+  or: [PurchaseOrderDetailFilterInput!]
+  purchaseOrderId: ComparableInt32OperationFilterInput
+  purchaseOrderDetailId: ComparableInt32OperationFilterInput
+  dueDate: ComparableDateTimeOperationFilterInput
+  orderQty: ComparableInt16OperationFilterInput
+  productId: ComparableInt32OperationFilterInput
+  unitPrice: ComparableDecimalOperationFilterInput
+  lineTotal: ComparableDecimalOperationFilterInput
+  receivedQty: ComparableDecimalOperationFilterInput
+  rejectedQty: ComparableDecimalOperationFilterInput
+  stockedQty: ComparableDecimalOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+  purchaseOrder: PurchaseOrderHeaderFilterInput
+}
+
+input ShoppingCartItemFilterInput {
+  and: [ShoppingCartItemFilterInput!]
+  or: [ShoppingCartItemFilterInput!]
+  shoppingCartItemId: ComparableInt32OperationFilterInput
+  shoppingCartId: StringOperationFilterInput
+  quantity: ComparableInt32OperationFilterInput
+  productId: ComparableInt32OperationFilterInput
+  dateCreated: ComparableDateTimeOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+}
+
+input SpecialOfferProductFilterInput {
+  and: [SpecialOfferProductFilterInput!]
+  or: [SpecialOfferProductFilterInput!]
+  specialOfferId: ComparableInt32OperationFilterInput
+  productId: ComparableInt32OperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+  specialOffer: SpecialOfferFilterInput
+  salesOrderDetails: ListFilterInputTypeOfSalesOrderDetailFilterInput
+}
+
+input TransactionHistoryFilterInput {
+  and: [TransactionHistoryFilterInput!]
+  or: [TransactionHistoryFilterInput!]
+  transactionId: ComparableInt32OperationFilterInput
+  productId: ComparableInt32OperationFilterInput
+  referenceOrderId: ComparableInt32OperationFilterInput
+  referenceOrderLineId: ComparableInt32OperationFilterInput
+  transactionDate: ComparableDateTimeOperationFilterInput
+  transactionType: StringOperationFilterInput
+  quantity: ComparableInt32OperationFilterInput
+  actualCost: ComparableDecimalOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+}
+
+input SalesOrderDetailFilterInput {
+  and: [SalesOrderDetailFilterInput!]
+  or: [SalesOrderDetailFilterInput!]
+  salesOrderId: ComparableInt32OperationFilterInput
+  salesOrderDetailId: ComparableInt32OperationFilterInput
+  carrierTrackingNumber: StringOperationFilterInput
+  orderQty: ComparableInt16OperationFilterInput
+  productId: ComparableInt32OperationFilterInput
+  specialOfferId: ComparableInt32OperationFilterInput
+  unitPrice: ComparableDecimalOperationFilterInput
+  unitPriceDiscount: ComparableDecimalOperationFilterInput
+  lineTotal: ComparableDecimalOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  product: ProductFilterInput
+  salesOrder: SalesOrderHeaderFilterInput
+  specialOfferProduct: SpecialOfferProductFilterInput
+}
+
+input ProductCategorySortInput {
+  productCategoryId: SortEnumType
+  name: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+input StateProvinceFilterInput {
+  and: [StateProvinceFilterInput!]
+  or: [StateProvinceFilterInput!]
+  stateProvinceId: ComparableInt32OperationFilterInput
+  stateProvinceCode: StringOperationFilterInput
+  countryRegionCode: StringOperationFilterInput
+  isOnlyStateProvinceFlag: BooleanOperationFilterInput
+  name: StringOperationFilterInput
+  territoryId: ComparableInt32OperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  countryRegionCodeNavigation: CountryRegionFilterInput
+  territory: SalesTerritoryFilterInput
+  addresses: ListFilterInputTypeOfAddressFilterInput
+  salesTaxRates: ListFilterInputTypeOfSalesTaxRateFilterInput
+}
+
+input ListFilterInputTypeOfBusinessEntityAddressFilterInput {
+  all: BusinessEntityAddressFilterInput
+  none: BusinessEntityAddressFilterInput
+  some: BusinessEntityAddressFilterInput
+  any: Boolean
+}
+
+input CurrencyFilterInput {
+  and: [CurrencyFilterInput!]
+  or: [CurrencyFilterInput!]
+  currencyCode: StringOperationFilterInput
+  name: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  countryRegionCurrencies: ListFilterInputTypeOfCountryRegionCurrencyFilterInput
+  currencyRateFromCurrencyCodeNavigations: ListFilterInputTypeOfCurrencyRateFilterInput
+  currencyRateToCurrencyCodeNavigations: ListFilterInputTypeOfCurrencyRateFilterInput
+}
+
+input SalesOrderHeaderSalesReasonFilterInput {
+  and: [SalesOrderHeaderSalesReasonFilterInput!]
+  or: [SalesOrderHeaderSalesReasonFilterInput!]
+  salesOrderId: ComparableInt32OperationFilterInput
+  salesReasonId: ComparableInt32OperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  salesOrder: SalesOrderHeaderFilterInput
+  salesReason: SalesReasonFilterInput
+}
+
+input StateProvinceSortInput {
+  stateProvinceId: SortEnumType
+  stateProvinceCode: SortEnumType
+  countryRegionCode: SortEnumType
+  isOnlyStateProvinceFlag: SortEnumType
+  name: SortEnumType
+  territoryId: SortEnumType
+  rowguid: SortEnumType
+  modifiedDate: SortEnumType
+  countryRegionCodeNavigation: CountryRegionSortInput
+  territory: SalesTerritorySortInput
+}
+
+input CurrencySortInput {
+  currencyCode: SortEnumType
+  name: SortEnumType
+  modifiedDate: SortEnumType
+}
+
+input BusinessEntityContactFilterInput {
+  and: [BusinessEntityContactFilterInput!]
+  or: [BusinessEntityContactFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  personId: ComparableInt32OperationFilterInput
+  contactTypeId: ComparableInt32OperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: BusinessEntityFilterInput
+  contactType: ContactTypeFilterInput
+  person: PersonFilterInput
+}
+
+input EmailAddressFilterInput {
+  and: [EmailAddressFilterInput!]
+  or: [EmailAddressFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  emailAddressId: ComparableInt32OperationFilterInput
+  emailAddress1: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: PersonFilterInput
+}
+
+input PersonCreditCardFilterInput {
+  and: [PersonCreditCardFilterInput!]
+  or: [PersonCreditCardFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  creditCardId: ComparableInt32OperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: PersonFilterInput
+  creditCard: CreditCardFilterInput
+}
+
+input PersonPhoneFilterInput {
+  and: [PersonPhoneFilterInput!]
+  or: [PersonPhoneFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  phoneNumber: StringOperationFilterInput
+  phoneNumberTypeId: ComparableInt32OperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: PersonFilterInput
+  phoneNumberType: PhoneNumberTypeFilterInput
+}
+
+input ListFilterInputTypeOfCountryRegionCurrencyFilterInput {
+  all: CountryRegionCurrencyFilterInput
+  none: CountryRegionCurrencyFilterInput
+  some: CountryRegionCurrencyFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfSalesTerritoryFilterInput {
+  all: SalesTerritoryFilterInput
+  none: SalesTerritoryFilterInput
+  some: SalesTerritoryFilterInput
+  any: Boolean
+}
+
+input SalesTerritoryHistoryFilterInput {
+  and: [SalesTerritoryHistoryFilterInput!]
+  or: [SalesTerritoryHistoryFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  territoryId: ComparableInt32OperationFilterInput
+  startDate: ComparableDateTimeOperationFilterInput
+  endDate: ComparableNullableOfDateTimeOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: SalesPersonFilterInput
+  territory: SalesTerritoryFilterInput
+}
+
+input ShiftFilterInput {
+  and: [ShiftFilterInput!]
+  or: [ShiftFilterInput!]
+  shiftId: ComparableByteOperationFilterInput
+  name: StringOperationFilterInput
+  startTime: ComparableTimeSpanOperationFilterInput
+  endTime: ComparableTimeSpanOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  employeeDepartmentHistories: ListFilterInputTypeOfEmployeeDepartmentHistoryFilterInput
+}
+
+input SalesPersonQuotaHistoryFilterInput {
+  and: [SalesPersonQuotaHistoryFilterInput!]
+  or: [SalesPersonQuotaHistoryFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  quotaDate: ComparableDateTimeOperationFilterInput
+  salesQuota: ComparableDecimalOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntity: SalesPersonFilterInput
+}
+
+input ProductModelIllustrationFilterInput {
+  and: [ProductModelIllustrationFilterInput!]
+  or: [ProductModelIllustrationFilterInput!]
+  productModelId: ComparableInt32OperationFilterInput
+  illustrationId: ComparableInt32OperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  illustration: IllustrationFilterInput
+  productModel: ProductModelFilterInput
+}
+
+input ProductModelProductDescriptionCultureFilterInput {
+  and: [ProductModelProductDescriptionCultureFilterInput!]
+  or: [ProductModelProductDescriptionCultureFilterInput!]
+  productModelId: ComparableInt32OperationFilterInput
+  productDescriptionId: ComparableInt32OperationFilterInput
+  cultureId: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  culture: CultureFilterInput
+  productDescription: ProductDescriptionFilterInput
+  productModel: ProductModelFilterInput
+}
+
+input ListFilterInputTypeOfProductSubcategoryFilterInput {
+  all: ProductSubcategoryFilterInput
+  none: ProductSubcategoryFilterInput
+  some: ProductSubcategoryFilterInput
+  any: Boolean
+}
+
+input ProductPhotoFilterInput {
+  and: [ProductPhotoFilterInput!]
+  or: [ProductPhotoFilterInput!]
+  productPhotoId: ComparableInt32OperationFilterInput
+  thumbNailPhoto: ListComparableByteOperationFilterInput
+  thumbnailPhotoFileName: StringOperationFilterInput
+  largePhoto: ListComparableByteOperationFilterInput
+  largePhotoFileName: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  productProductPhotos: ListFilterInputTypeOfProductProductPhotoFilterInput
+}
+
+input SpecialOfferFilterInput {
+  and: [SpecialOfferFilterInput!]
+  or: [SpecialOfferFilterInput!]
+  specialOfferId: ComparableInt32OperationFilterInput
+  description: StringOperationFilterInput
+  discountPct: ComparableDecimalOperationFilterInput
+  type: StringOperationFilterInput
+  category: StringOperationFilterInput
+  startDate: ComparableDateTimeOperationFilterInput
+  endDate: ComparableDateTimeOperationFilterInput
+  minQty: ComparableInt32OperationFilterInput
+  maxQty: ComparableNullableOfInt32OperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  specialOfferProducts: ListFilterInputTypeOfSpecialOfferProductFilterInput
+}
+
+input ListFilterInputTypeOfAddressFilterInput {
+  all: AddressFilterInput
+  none: AddressFilterInput
+  some: AddressFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfSalesTaxRateFilterInput {
+  all: SalesTaxRateFilterInput
+  none: SalesTaxRateFilterInput
+  some: SalesTaxRateFilterInput
+  any: Boolean
+}
+
+input BusinessEntityAddressFilterInput {
+  and: [BusinessEntityAddressFilterInput!]
+  or: [BusinessEntityAddressFilterInput!]
+  businessEntityId: ComparableInt32OperationFilterInput
+  addressId: ComparableInt32OperationFilterInput
+  addressTypeId: ComparableInt32OperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  address: AddressFilterInput
+  addressType: AddressTypeFilterInput
+  businessEntity: BusinessEntityFilterInput
+}
+
+input ListFilterInputTypeOfCurrencyRateFilterInput {
+  all: CurrencyRateFilterInput
+  none: CurrencyRateFilterInput
+  some: CurrencyRateFilterInput
+  any: Boolean
+}
+
+input SalesReasonFilterInput {
+  and: [SalesReasonFilterInput!]
+  or: [SalesReasonFilterInput!]
+  salesReasonId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  reasonType: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  salesOrderHeaderSalesReasons: ListFilterInputTypeOfSalesOrderHeaderSalesReasonFilterInput
+}
+
+input ContactTypeFilterInput {
+  and: [ContactTypeFilterInput!]
+  or: [ContactTypeFilterInput!]
+  contactTypeId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntityContacts: ListFilterInputTypeOfBusinessEntityContactFilterInput
+}
+
+input PhoneNumberTypeFilterInput {
+  and: [PhoneNumberTypeFilterInput!]
+  or: [PhoneNumberTypeFilterInput!]
+  phoneNumberTypeId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  personPhones: ListFilterInputTypeOfPersonPhoneFilterInput
+}
+
+input CountryRegionCurrencyFilterInput {
+  and: [CountryRegionCurrencyFilterInput!]
+  or: [CountryRegionCurrencyFilterInput!]
+  countryRegionCode: StringOperationFilterInput
+  currencyCode: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  countryRegionCodeNavigation: CountryRegionFilterInput
+  currencyCodeNavigation: CurrencyFilterInput
+}
+
+input ComparableTimeSpanOperationFilterInput {
+  eq: TimeSpan
+  neq: TimeSpan
+  in: [TimeSpan!]
+  nin: [TimeSpan!]
+  gt: TimeSpan
+  ngt: TimeSpan
+  gte: TimeSpan
+  ngte: TimeSpan
+  lt: TimeSpan
+  nlt: TimeSpan
+  lte: TimeSpan
+  nlte: TimeSpan
+}
+
+input IllustrationFilterInput {
+  and: [IllustrationFilterInput!]
+  or: [IllustrationFilterInput!]
+  illustrationId: ComparableInt32OperationFilterInput
+  diagram: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  productModelIllustrations: ListFilterInputTypeOfProductModelIllustrationFilterInput
+}
+
+input CultureFilterInput {
+  and: [CultureFilterInput!]
+  or: [CultureFilterInput!]
+  cultureId: StringOperationFilterInput
+  name: StringOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  productModelProductDescriptionCultures: ListFilterInputTypeOfProductModelProductDescriptionCultureFilterInput
+}
+
+input ProductDescriptionFilterInput {
+  and: [ProductDescriptionFilterInput!]
+  or: [ProductDescriptionFilterInput!]
+  productDescriptionId: ComparableInt32OperationFilterInput
+  description: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  productModelProductDescriptionCultures: ListFilterInputTypeOfProductModelProductDescriptionCultureFilterInput
+}
+
+input ListComparableByteOperationFilterInput {
+  all: ComparableByteOperationFilterInput
+  none: ComparableByteOperationFilterInput
+  some: ComparableByteOperationFilterInput
+  any: Boolean
+}
+
+input SalesTaxRateFilterInput {
+  and: [SalesTaxRateFilterInput!]
+  or: [SalesTaxRateFilterInput!]
+  salesTaxRateId: ComparableInt32OperationFilterInput
+  stateProvinceId: ComparableInt32OperationFilterInput
+  taxType: ComparableByteOperationFilterInput
+  taxRate: ComparableDecimalOperationFilterInput
+  name: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  stateProvince: StateProvinceFilterInput
+}
+
+input AddressTypeFilterInput {
+  and: [AddressTypeFilterInput!]
+  or: [AddressTypeFilterInput!]
+  addressTypeId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  rowguid: ComparableGuidOperationFilterInput
+  modifiedDate: ComparableDateTimeOperationFilterInput
+  businessEntityAddresses: ListFilterInputTypeOfBusinessEntityAddressFilterInput
+}
+
+type ShoppingCartItem {
+  shoppingCartItemId: Int!
+  shoppingCartId: String
+  quantity: Int!
+  productId: Int!
+  dateCreated: DateTime!
+  modifiedDate: DateTime!
+  product: Product
+}
+
+type SpecialOffer {
+  specialOfferId: Int!
+  description: String
+  discountPct: Decimal!
+  type: String
+  category: String
+  startDate: DateTime!
+  endDate: DateTime!
+  minQty: Int!
+  maxQty: Int
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  specialOfferProducts: [SpecialOfferProduct]
+}
+
+scalar UUID
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime
+
+"The `Short` scalar type represents non-fractional signed whole 16-bit numeric values. Short can represent values between -(2^15) and 2^15 - 1."
+scalar Short
+
+"The built-in `Decimal` scalar type."
+scalar Decimal
+
+"The `Byte` scalar type represents non-fractional whole numeric values. Byte can represent values between 0 and 255."
+scalar Byte
+
+type Person {
+  businessEntityId: Int!
+  personType: String
+  nameStyle: Boolean!
+  title: String
+  firstName: String
+  middleName: String
+  lastName: String
+  suffix: String
+  emailPromotion: Int!
+  additionalContactInfo: String
+  demographics: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntity: BusinessEntity
+  employee: Employee
+  password: Password
+  businessEntityContacts: [BusinessEntityContact]
+  customers: [Customer]
+  emailAddresses: [EmailAddress]
+  personCreditCards: [PersonCreditCard]
+  personPhones: [PersonPhone]
+}
+
+type SalesTerritory {
+  territoryId: Int!
+  name: String
+  countryRegionCode: String
+  group: String
+  salesYtd: Decimal!
+  salesLastYear: Decimal!
+  costYtd: Decimal!
+  costLastYear: Decimal!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  countryRegionCodeNavigation: CountryRegion
+  customers: [Customer]
+  salesOrderHeaders: [SalesOrderHeader]
+  salesPeople: [SalesPerson]
+  salesTerritoryHistories: [SalesTerritoryHistory]
+  stateProvinces: [StateProvince]
+}
+
+type EmployeeDepartmentHistory {
+  businessEntityId: Int!
+  departmentId: Short!
+  shiftId: Byte!
+  startDate: DateTime!
+  endDate: DateTime
+  modifiedDate: DateTime!
+  businessEntity: Employee
+  department: Department
+  shift: Shift
+}
+
+type SalesPerson {
+  businessEntityId: Int!
+  territoryId: Int
+  salesQuota: Decimal
+  bonus: Decimal!
+  commissionPct: Decimal!
+  salesYtd: Decimal!
+  salesLastYear: Decimal!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntity: Employee
+  territory: SalesTerritory
+  salesOrderHeaders: [SalesOrderHeader]
+  salesPersonQuotaHistories: [SalesPersonQuotaHistory]
+  salesTerritoryHistories: [SalesTerritoryHistory]
+  stores: [Store]
+}
+
+type EmployeePayHistory {
+  businessEntityId: Int!
+  rateChangeDate: DateTime!
+  rate: Decimal!
+  payFrequency: Byte!
+  modifiedDate: DateTime!
+  businessEntity: Employee
+}
+
+type JobCandidate {
+  jobCandidateId: Int!
+  businessEntityId: Int
+  resume: String
+  modifiedDate: DateTime!
+  businessEntity: Employee
+}
+
+type ProductInventory {
+  productId: Int!
+  locationId: Short!
+  shelf: String
+  bin: Byte!
+  quantity: Short!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  location: Location
+  product: Product
+}
+
+type WorkOrderRouting {
+  workOrderId: Int!
+  productId: Int!
+  operationSequence: Short!
+  locationId: Short!
+  scheduledStartDate: DateTime!
+  scheduledEndDate: DateTime!
+  actualStartDate: DateTime
+  actualEndDate: DateTime
+  actualResourceHrs: Decimal
+  plannedCost: Decimal!
+  actualCost: Decimal
+  modifiedDate: DateTime!
+  location: Location
+  workOrder: WorkOrder
+}
+
+type ProductModel {
+  productModelId: Int!
+  name: String
+  catalogDescription: String
+  instructions: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  productModelIllustrations: [ProductModelIllustration]
+  productModelProductDescriptionCultures: [ProductModelProductDescriptionCulture]
+  products: [Product]
+}
+
+type ProductSubcategory {
+  productSubcategoryId: Int!
+  productCategoryId: Int!
+  name: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  productCategory: ProductCategory
+  products: [Product]
+}
+
+type UnitMeasure {
+  unitMeasureCode: String
+  name: String
+  modifiedDate: DateTime!
+  billOfMaterials: [BillOfMaterial]
+  productSizeUnitMeasureCodeNavigations: [Product]
+  productVendors: [ProductVendor]
+  productWeightUnitMeasureCodeNavigations: [Product]
+}
+
+type BillOfMaterial {
+  billOfMaterialsId: Int!
+  productAssemblyId: Int
+  componentId: Int!
+  startDate: DateTime!
+  endDate: DateTime
+  unitMeasureCode: String
+  bomlevel: Short!
+  perAssemblyQty: Decimal!
+  modifiedDate: DateTime!
+  component: Product
+  productAssembly: Product
+  unitMeasureCodeNavigation: UnitMeasure
+}
+
+type ProductCostHistory {
+  productId: Int!
+  startDate: DateTime!
+  endDate: DateTime
+  standardCost: Decimal!
+  modifiedDate: DateTime!
+  product: Product
+}
+
+type ProductListPriceHistory {
+  productId: Int!
+  startDate: DateTime!
+  endDate: DateTime
+  listPrice: Decimal!
+  modifiedDate: DateTime!
+  product: Product
+}
+
+type ProductProductPhoto {
+  productId: Int!
+  productPhotoId: Int!
+  primary: Boolean!
+  modifiedDate: DateTime!
+  product: Product
+  productPhoto: ProductPhoto
+}
+
+type ProductReview {
+  productReviewId: Int!
+  productId: Int!
+  reviewerName: String
+  reviewDate: DateTime!
+  emailAddress: String
+  rating: Int!
+  comments: String
+  modifiedDate: DateTime!
+  product: Product
+}
+
+type ProductVendor {
+  productId: Int!
+  businessEntityId: Int!
+  averageLeadTime: Int!
+  standardPrice: Decimal!
+  lastReceiptCost: Decimal
+  lastReceiptDate: DateTime
+  minOrderQty: Int!
+  maxOrderQty: Int!
+  onOrderQty: Int
+  unitMeasureCode: String
+  modifiedDate: DateTime!
+  businessEntity: Vendor
+  product: Product
+  unitMeasureCodeNavigation: UnitMeasure
+}
+
+type PurchaseOrderDetail {
+  purchaseOrderId: Int!
+  purchaseOrderDetailId: Int!
+  dueDate: DateTime!
+  orderQty: Short!
+  productId: Int!
+  unitPrice: Decimal!
+  lineTotal: Decimal!
+  receivedQty: Decimal!
+  rejectedQty: Decimal!
+  stockedQty: Decimal!
+  modifiedDate: DateTime!
+  product: Product
+  purchaseOrder: PurchaseOrderHeader
+}
+
+type SpecialOfferProduct {
+  specialOfferId: Int!
+  productId: Int!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  product: Product
+  specialOffer: SpecialOffer
+  salesOrderDetails: [SalesOrderDetail]
+}
+
+type TransactionHistory {
+  transactionId: Int!
+  productId: Int!
+  referenceOrderId: Int!
+  referenceOrderLineId: Int!
+  transactionDate: DateTime!
+  transactionType: String
+  quantity: Int!
+  actualCost: Decimal!
+  modifiedDate: DateTime!
+  product: Product
+}
+
+type SalesOrderDetail {
+  salesOrderId: Int!
+  salesOrderDetailId: Int!
+  carrierTrackingNumber: String
+  orderQty: Short!
+  productId: Int!
+  specialOfferId: Int!
+  unitPrice: Decimal!
+  unitPriceDiscount: Decimal!
+  lineTotal: Decimal!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  product: Product
+  salesOrder: SalesOrderHeader
+  specialOfferProduct: SpecialOfferProduct
+}
+
+type ShipMethod {
+  shipMethodId: Int!
+  name: String
+  shipBase: Decimal!
+  shipRate: Decimal!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  purchaseOrderHeaders: [PurchaseOrderHeader]
+  salesOrderHeaders: [SalesOrderHeader]
+}
+
+type Address {
+  addressId: Int!
+  addressLine1: String
+  addressLine2: String
+  city: String
+  stateProvinceId: Int!
+  postalCode: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  stateProvince: StateProvince
+  businessEntityAddresses: [BusinessEntityAddress]
+  salesOrderHeaderBillToAddresses: [SalesOrderHeader]
+  salesOrderHeaderShipToAddresses: [SalesOrderHeader]
+}
+
+type CreditCard {
+  creditCardId: Int!
+  cardType: String
+  cardNumber: String
+  expMonth: Byte!
+  expYear: Short!
+  modifiedDate: DateTime!
+  personCreditCards: [PersonCreditCard]
+  salesOrderHeaders: [SalesOrderHeader]
+}
+
+type CurrencyRate {
+  currencyRateId: Int!
+  currencyRateDate: DateTime!
+  fromCurrencyCode: String
+  toCurrencyCode: String
+  averageRate: Decimal!
+  endOfDayRate: Decimal!
+  modifiedDate: DateTime!
+  fromCurrencyCodeNavigation: Currency
+  toCurrencyCodeNavigation: Currency
+  salesOrderHeaders: [SalesOrderHeader]
+}
+
+type SalesOrderHeaderSalesReason {
+  salesOrderId: Int!
+  salesReasonId: Int!
+  modifiedDate: DateTime!
+  salesOrder: SalesOrderHeader
+  salesReason: SalesReason
+}
+
+type BusinessEntity {
+  businessEntityId: Int!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  person: Person
+  store: Store
+  vendor: Vendor
+  businessEntityAddresses: [BusinessEntityAddress]
+  businessEntityContacts: [BusinessEntityContact]
+}
+
+type ScrapReason {
+  scrapReasonId: Short!
+  name: String
+  modifiedDate: DateTime!
+  workOrders: [WorkOrder]
+}
+
+"The `TimeSpan` scalar represents an ISO-8601 compliant duration type."
+scalar TimeSpan
+
+type SalesReason {
+  salesReasonId: Int!
+  name: String
+  reasonType: String
+  modifiedDate: DateTime!
+  salesOrderHeaderSalesReasons: [SalesOrderHeaderSalesReason]
+}
+
+type Currency {
+  currencyCode: String
+  name: String
+  modifiedDate: DateTime!
+  countryRegionCurrencies: [CountryRegionCurrency]
+  currencyRateFromCurrencyCodeNavigations: [CurrencyRate]
+  currencyRateToCurrencyCodeNavigations: [CurrencyRate]
+}
+
+type BusinessEntityAddress {
+  businessEntityId: Int!
+  addressId: Int!
+  addressTypeId: Int!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  address: Address
+  addressType: AddressType
+  businessEntity: BusinessEntity
+}
+
+type ProductPhoto {
+  productPhotoId: Int!
+  thumbNailPhoto: [Byte!]
+  thumbnailPhotoFileName: String
+  largePhoto: [Byte!]
+  largePhotoFileName: String
+  modifiedDate: DateTime!
+  productProductPhotos: [ProductProductPhoto]
+}
+
+type ProductCategory {
+  productCategoryId: Int!
+  name: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  productSubcategories: [ProductSubcategory]
+}
+
+type ProductModelProductDescriptionCulture {
+  productModelId: Int!
+  productDescriptionId: Int!
+  cultureId: String
+  modifiedDate: DateTime!
+  culture: Culture
+  productDescription: ProductDescription
+  productModel: ProductModel
+}
+
+type ProductModelIllustration {
+  productModelId: Int!
+  illustrationId: Int!
+  modifiedDate: DateTime!
+  illustration: Illustration
+  productModel: ProductModel
+}
+
+type SalesPersonQuotaHistory {
+  businessEntityId: Int!
+  quotaDate: DateTime!
+  salesQuota: Decimal!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntity: SalesPerson
+}
+
+type Shift {
+  shiftId: Byte!
+  name: String
+  startTime: TimeSpan!
+  endTime: TimeSpan!
+  modifiedDate: DateTime!
+  employeeDepartmentHistories: [EmployeeDepartmentHistory]
+}
+
+type StateProvince {
+  stateProvinceId: Int!
+  stateProvinceCode: String
+  countryRegionCode: String
+  isOnlyStateProvinceFlag: Boolean
+  name: String
+  territoryId: Int!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  countryRegionCodeNavigation: CountryRegion
+  territory: SalesTerritory
+  addresses: [Address]
+  salesTaxRates: [SalesTaxRate]
+}
+
+type SalesTerritoryHistory {
+  businessEntityId: Int!
+  territoryId: Int!
+  startDate: DateTime!
+  endDate: DateTime
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntity: SalesPerson
+  territory: SalesTerritory
+}
+
+type CountryRegion {
+  countryRegionCode: String
+  name: String
+  modifiedDate: DateTime!
+  countryRegionCurrencies: [CountryRegionCurrency]
+  salesTerritories: [SalesTerritory]
+  stateProvinces: [StateProvince]
+}
+
+type PersonPhone {
+  businessEntityId: Int!
+  phoneNumber: String
+  phoneNumberTypeId: Int!
+  modifiedDate: DateTime!
+  businessEntity: Person
+  phoneNumberType: PhoneNumberType
+}
+
+type PersonCreditCard {
+  businessEntityId: Int!
+  creditCardId: Int!
+  modifiedDate: DateTime!
+  businessEntity: Person
+  creditCard: CreditCard
+}
+
+type EmailAddress {
+  businessEntityId: Int!
+  emailAddressId: Int!
+  emailAddress1: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntity: Person
+}
+
+type BusinessEntityContact {
+  businessEntityId: Int!
+  personId: Int!
+  contactTypeId: Int!
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntity: BusinessEntity
+  contactType: ContactType
+  person: Person
+}
+
+type Password {
+  businessEntityId: Int!
+  passwordHash: String
+  passwordSalt: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntity: Person
+}
+
+type ContactType {
+  contactTypeId: Int!
+  name: String
+  modifiedDate: DateTime!
+  businessEntityContacts: [BusinessEntityContact]
+}
+
+type PhoneNumberType {
+  phoneNumberTypeId: Int!
+  name: String
+  modifiedDate: DateTime!
+  personPhones: [PersonPhone]
+}
+
+type SalesTaxRate {
+  salesTaxRateId: Int!
+  stateProvinceId: Int!
+  taxType: Byte!
+  taxRate: Decimal!
+  name: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  stateProvince: StateProvince
+}
+
+type Illustration {
+  illustrationId: Int!
+  diagram: String
+  modifiedDate: DateTime!
+  productModelIllustrations: [ProductModelIllustration]
+}
+
+type ProductDescription {
+  productDescriptionId: Int!
+  description: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  productModelProductDescriptionCultures: [ProductModelProductDescriptionCulture]
+}
+
+type Culture {
+  cultureId: String
+  name: String
+  modifiedDate: DateTime!
+  productModelProductDescriptionCultures: [ProductModelProductDescriptionCulture]
+}
+
+type AddressType {
+  addressTypeId: Int!
+  name: String
+  rowguid: UUID!
+  modifiedDate: DateTime!
+  businessEntityAddresses: [BusinessEntityAddress]
+}
+
+type CountryRegionCurrency {
+  countryRegionCode: String
+  currencyCode: String
+  modifiedDate: DateTime!
+  countryRegionCodeNavigation: CountryRegion
+  currencyCodeNavigation: Currency
+}
